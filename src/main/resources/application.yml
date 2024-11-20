@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        use_sql_comments: true
+jwt:
+  secret:
+    key: ${jwt.secret.key}
+
+admin:
+  secret:
+    key: H67G8JkLqTz93PdC0VmXNQw58B9dUe4S

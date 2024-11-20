@@ -1,0 +1,12 @@
+## application-prod.yml
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/springplus
+    username: root
+    password: CHLtjdud9213
+jwt:
+  secret:
+    key: g9kszkHTlGSJRtfAUkq8i7d/7+gDayMy0gCEmZS0zOhehRTPyALLoDMCVTwIOpLNl7X7jZLir/vN1PDsU51Ixg==
