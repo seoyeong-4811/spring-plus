@@ -39,10 +39,13 @@ public class TodoController {
     ) {
         return ResponseEntity.ok(todoService.getTodos(page, size, weather, startDate, endDate));
         }
-    }
 
-    @GetMapping("/todos/{todoId}")
+        @GetMapping("/todos/{todoId}")
     public ResponseEntity<TodoResponse> getTodo(@PathVariable long todoId) {
         return ResponseEntity.ok(todoService.getTodo(todoId));
     }
+
+}
+
+
 

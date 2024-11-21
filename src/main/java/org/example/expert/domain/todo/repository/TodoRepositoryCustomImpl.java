@@ -4,7 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.example.expert.domain.todo.entity.Todo;
 import org.springframework.stereotype.Repository;
-
+import org.example.expert.domain.todo.entity.QTodo;
 import java.util.Optional;
 
 @RequiredArgsConstructor
