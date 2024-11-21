@@ -18,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true) // 기본적으로 읽기 전용 트랜잭션 적용
@@ -49,19 +51,17 @@ public class TodoService {
         );
     }
 
-    public Page<TodoResponse> getTodos(int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size);
-
-        Page<Todo> todos = todoRepository.findAllByOrderByModifiedAtDesc(pageable);
-
-        return todos.map(todo -> new TodoResponse(
-                todo.getId(),
-                todo.getTitle(),
-                todo.getContents(),
-                todo.getWeather(),
-                new UserResponse(todo.getUser().getId(), todo.getUser().getEmail(), todo.getUser().getNickname()),
-                todo.getCreatedAt(),
-                todo.getModifiedAt()
+    public Page<TodoResponse> getTodos(int page, int size, String weather, LocalDateTime startDate, LocalDateTime endDate) {
+        Pageable pageable = PageRequest.of(page - 1, size); // 페이지 번호는 0부터 시작
+        return todoRepository.findTodosWithConditions(weather, startDate, endDate, pageable)
+                .map(todo -> new TodoResponse(
+                        todo.getId(),
+                        todo.getTitle(),
+                        todo.getContents(),
+                        todo.getWeather(),
+                        new UserResponse(todo.getUser().getId(), todo.getUser().getEmail(), todo.getUser().getNickname()),
+                        todo.getCreatedAt(),
+                        todo.getModifiedAt()
         ));
     }
 
